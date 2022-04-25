@@ -1,46 +1,43 @@
 package com.redditbackend.app.service;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.Key;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
-
-import javax.annotation.PostConstruct;
-
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.oauth2.jwt.JwtClaimsSet;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
-import com.redditbackend.app.exceptions.SpringRedditException;
+import com.nimbusds.jwt.JWTClaimsSet;
 
-import io.jsonwebtoken.Jwts;
+import java.time.Instant;
+import java.util.Date;
 
 @Service
+@RequiredArgsConstructor
 public class JwtProvider {
 
-	private KeyStore keyStore;
+	private final JwtEncoder jwtEncoder;
 
-	@PostConstruct
-	public void init() {
-		try {
-			keyStore = KeyStore.getInstance("JKS");
-			InputStream resourceAsStream = getClass().getResourceAsStream("/springblog.jks");
-			keyStore.load(resourceAsStream, "secret".toCharArray());
-		} catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException e) {
-			throw new SpringRedditException("Exception occured while loading keystore");
-		}
-	}
+	@Value("${jwt.expiration.time}")
+	private Long jwtExpirationInMillis;
 
 	public String generateToken(Authentication authentication) {
 		User principal = (User) authentication.getPrincipal();
-		return Jwts.builder().setSubject(principal.getUsername()).signWith(getPrivateKey()).compact();
+		return generateTokenWithUserName(principal.getUsername());
 	}
 
-	private Key getPrivateKey() {
-		// TODO Auto-generated method stub
-		return null;
+	public String generateTokenWithUserName(String username) {
+		JwtClaimsSet claims = JwtClaimsSet.builder().issuer("self").issuedAt(Instant.now())
+				.expiresAt(Instant.now().plusMillis(jwtExpirationInMillis)).subject(username)
+				.claim("scope", "ROLE_USER").build();
+
+		return this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+	}
+
+	public Long getJwtExpirationInMillis() {
+		return jwtExpirationInMillis;
 	}
 }
