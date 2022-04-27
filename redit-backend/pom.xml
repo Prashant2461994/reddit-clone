@@ -13,6 +13,9 @@
 
 	<properties>
 		<org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
 	</properties>
 
 
@@ -115,5 +118,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 </project>

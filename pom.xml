@@ -10,12 +10,15 @@
 	<name>redit-clone</name>
 	<description>This is a reddit clone project made up angular 7 and spring boot</description>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<org.springframework.boot.version>2.6.2</org.springframework.boot.version>
 		<org.springframework.boot.starter.test.version>2.6.6</org.springframework.boot.starter.test.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<apache.maven.plugin>3.5.1</apache.maven.plugin>
+		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+
 	</properties>
 
 
@@ -39,6 +42,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${maven.compiler.source}</version>
 				<configuration>
 					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
@@ -54,6 +58,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
 				<configuration>
 					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
@@ -68,6 +73,11 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 							<version>1.18.8</version>
+						</path>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-mapstruct-binding</artifactId>
+							<version>0.2.0</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>

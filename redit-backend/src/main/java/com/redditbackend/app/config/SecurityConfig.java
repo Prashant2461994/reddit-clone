@@ -6,6 +6,8 @@ import java.security.interfaces.RSAPublicKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -31,10 +33,11 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
+@Configuration
+@RequiredArgsConstructor
 @EnableWebSecurity
-@AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private final UserDetailsService userDetailsService;
@@ -52,19 +55,38 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/auth/**").permitAll().anyRequest()
-				.authenticated();
-
-		httpSecurity.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.exceptionHandling(
-						exceptions -> exceptions.authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
-								.accessDeniedHandler(new BearerTokenAccessDeniedHandler()));
+		
+		httpSecurity.cors().and()
+        .csrf().disable()
+        .authorizeHttpRequests(authorize -> authorize
+                .antMatchers("/api/auth/**")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/api/subreddit")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/api/posts/")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/api/posts/**")
+                .permitAll()
+                .antMatchers("/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated())
+        .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .exceptionHandling(exceptions -> exceptions
+                .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
+                .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
+        );
 
 	}
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+	
+	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 

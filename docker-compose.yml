@@ -7,7 +7,6 @@ services:
     environment:
       MYSQL_DATABASE: db
       MYSQL_ROOT_HOST: '%'
-      MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
     ports:
@@ -19,6 +18,22 @@ services:
     - mysqlconf:/etc/mysql
     networks:
     - spring
+    - mysql
+  mysql-workbench:
+    image: lscr.io/linuxserver/mysql-workbench
+    container_name: mysql-workbench
+    environment:
+    - PUID=1000
+    - PGID=1000
+    - TZ=Europe/London
+    volumes:
+    - /etc/mysql-config:/config
+    ports:
+    - 3000:3000
+    cap_add:
+    - IPC_LOCK
+    restart: unless-stopped
+    networks:
     - mysql
 networks:
   mysql:
