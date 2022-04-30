@@ -1,4 +1,4 @@
-package com.redditbackend.app.service;
+package com.redditbackend.app.security;
 
 import java.time.Instant;
 
