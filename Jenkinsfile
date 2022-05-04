@@ -5,7 +5,7 @@ pipeline {
         stage('Build ') {
             steps {
                 echo 'Building backend and frontend'
-                 'sh mvn clean install'
+                 sh 'mvn clean install'
             }
         }
         stage('Test') {
@@ -16,7 +16,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                 'cd ./redit-frontend/src/main/angular-reddit-clone'
+                 cd ./redit-frontend/src/main/angular-reddit-clone
             }
         }
     }
