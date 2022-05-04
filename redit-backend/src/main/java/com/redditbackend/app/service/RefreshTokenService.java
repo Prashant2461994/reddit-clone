@@ -3,7 +3,7 @@ package com.redditbackend.app.service;
 import java.time.Instant;
 import java.util.UUID;
 
-import javax.persistence.Entity;
+import org.springframework.stereotype.Service;
 
 import com.redditbackend.app.exceptions.SpringRedditException;
 import com.redditbackend.app.model.RefreshToken;
@@ -13,17 +13,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@Entity
 @AllArgsConstructor
+@Service
 public class RefreshTokenService {
-
 	private final RefreshTokenRepository refreshTokenRepository;
 
 	public RefreshToken generateRefreshToken() {
 		RefreshToken refreshToken = new RefreshToken();
 		refreshToken.setToken(UUID.randomUUID().toString());
 		refreshToken.setCreatedDate(Instant.now());
-
 		return refreshTokenRepository.save(refreshToken);
 	}
 

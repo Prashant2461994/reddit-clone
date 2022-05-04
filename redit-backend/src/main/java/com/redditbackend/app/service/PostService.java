@@ -20,7 +20,6 @@ import com.redditbackend.app.repository.PostRepository;
 import com.redditbackend.app.repository.SubredditRepository;
 import com.redditbackend.app.repository.UserRepository;
 
-import static java.util.List.*;
 import static java.util.stream.Collectors.toList;
 
 import lombok.AllArgsConstructor;
@@ -39,8 +38,7 @@ public class PostService {
 	private final UserRepository userRepository;
 
 	public Post save(PostRequest postRequest) {
-		Subreddit subreddit = subredditRepository.findByName(postRequest.getPostName())
-				.orElseThrow(() -> new SubredditNotFoundException(postRequest.getSubredditName()));
+		Subreddit subreddit = subredditRepository.findByName(postRequest.getSubredditName()).orElseThrow(() -> new SubredditNotFoundException(postRequest.getSubredditName()));
 		return postRepository.save(postMapper.mapPost(postRequest, subreddit, authService.getCurrentUser()));
 	}
 

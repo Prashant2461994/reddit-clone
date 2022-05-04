@@ -33,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @AllArgsConstructor
 @Slf4j
+@Transactional
 public class AuthService {
 
 	private final PasswordEncoder passwordEncoder;
@@ -70,7 +71,7 @@ public class AuthService {
 		fetchUserAndEnable(verificationToken.get());
 	}
 
-	@Transactional
+	@Transactional(readOnly = true)
 	private void fetchUserAndEnable(VerificationToken verificationToken) {
 		String username = verificationToken.getUser().getUsername();
 		User user = userRepository.findByUsername(username)
@@ -84,9 +85,10 @@ public class AuthService {
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authenticate);
 		String jwtToken = jwtProvider.generateToken(authenticate);
-		log.info("JWT Token {} ", jwtToken);
-		return AuthenticationResponse.builder().authenticationToken(jwtToken).refreshToken("")
-				.expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis())).build();
+		return AuthenticationResponse.builder().authenticationToken(jwtToken)
+				.refreshToken(refreshTokenService.generateRefreshToken().getToken())
+				.expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
+				.username(loginRequest.getUsername()).build();
 
 	}
 
