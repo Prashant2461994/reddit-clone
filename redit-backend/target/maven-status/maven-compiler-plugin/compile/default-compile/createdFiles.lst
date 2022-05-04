@@ -12,6 +12,7 @@ com/redditbackend/app/service/CommentsService.class
 com/redditbackend/app/exceptions/PostNotFoundException.class
 com/redditbackend/app/service/VoteService.class
 com/redditbackend/app/service/MailService.class
+com/redditbackend/app/controller/VoteController.class
 com/redditbackend/app/service/SubredditService.class
 com/redditbackend/app/model/Vote$VoteBuilder.class
 com/redditbackend/app/dto/CommentsDTO.class
@@ -30,6 +31,7 @@ com/redditbackend/app/dto/SubredditDTO.class
 com/redditbackend/app/dto/LoginRequest.class
 com/redditbackend/app/mapper/SubredditMapper.class
 com/redditbackend/app/exceptions/SpringRedditException.class
+com/redditbackend/app/config/WebConfig.class
 com/redditbackend/app/mapper/CommentMapperImpl.class
 com/redditbackend/app/repository/RefreshTokenRepository.class
 com/redditbackend/app/repository/PostRepository.class
