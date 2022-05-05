@@ -15,9 +15,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                  dir('./redit-frontend/src/main/angular-reddit-clone') {
-                    sh 'ng serve'
-                 }
             }
         }
     }
