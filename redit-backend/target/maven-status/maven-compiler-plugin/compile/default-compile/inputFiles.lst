@@ -32,6 +32,7 @@
 /media/prashant/66DC65AEDC657967/Personal/Learning/Projects/reddit-clone/redit-backend/src/main/java/com/redditbackend/app/repository/RefreshTokenRepository.java
 /media/prashant/66DC65AEDC657967/Personal/Learning/Projects/reddit-clone/redit-backend/src/main/java/com/redditbackend/app/dto/PostRequest.java
 /media/prashant/66DC65AEDC657967/Personal/Learning/Projects/reddit-clone/redit-backend/src/main/java/com/redditbackend/app/config/SecurityConfig.java
+/media/prashant/66DC65AEDC657967/Personal/Learning/Projects/reddit-clone/redit-backend/src/main/java/com/redditbackend/app/config/AppConfig.java
 /media/prashant/66DC65AEDC657967/Personal/Learning/Projects/reddit-clone/redit-backend/src/main/java/com/redditbackend/app/model/NotificationEmail.java
 /media/prashant/66DC65AEDC657967/Personal/Learning/Projects/reddit-clone/redit-backend/src/main/java/com/redditbackend/app/mapper/PostMapper.java
 /media/prashant/66DC65AEDC657967/Personal/Learning/Projects/reddit-clone/redit-backend/src/main/java/com/redditbackend/app/dto/LoginRequest.java

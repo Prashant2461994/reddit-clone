@@ -40,6 +40,7 @@ com/redditbackend/app/model/Subreddit$SubredditBuilder.class
 com/redditbackend/app/service/RefreshTokenService.class
 com/redditbackend/app/model/RefreshToken.class
 com/redditbackend/app/config/SecurityConfig.class
+com/redditbackend/app/config/AppConfig.class
 com/redditbackend/app/exceptions/SubredditNotFoundException.class
 com/redditbackend/app/dto/RefreshTokenRequest.class
 com/redditbackend/app/model/User.class
