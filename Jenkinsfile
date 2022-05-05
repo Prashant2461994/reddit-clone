@@ -4,8 +4,7 @@ pipeline {
     stages {
         stage('Build ') {
             steps {
-                echo 'Building backend and frontend'
-                 sh 'mvn clean install'
+                 sh "mvn clean package"
             }
         }
         stage('Test') {
@@ -16,7 +15,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                 cd ./redit-frontend/src/main/angular-reddit-clone
+                dir('./redit-frontend/src/main/angular-reddit-clone') {
+                    sh "ng serve"
+                  }
             }
         }
     }

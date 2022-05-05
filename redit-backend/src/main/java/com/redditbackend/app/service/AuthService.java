@@ -15,6 +15,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.redditbackend.app.config.AppConfig;
 import com.redditbackend.app.dto.AuthenticationResponse;
 import com.redditbackend.app.dto.LoginRequest;
 import com.redditbackend.app.dto.RefreshTokenRequest;
@@ -43,19 +44,18 @@ public class AuthService {
 	private final AuthenticationManager authenticationManager;
 	private final JwtProvider jwtProvider;
 	private final RefreshTokenService refreshTokenService;
+	private final AppConfig appConfig;
 
 	@Transactional
 	public void signup(RegisterRequest registerRequest) {
 		User user = User.builder().username(registerRequest.getUsername()).email(registerRequest.getEmail())
 				.password(passwordEncoder.encode(registerRequest.getPassword())).created(Instant.now()).enabled(false)
 				.build();
-
 		userRepository.save(user);
-
 		String verficationToken = generateVerificationToken(user);
 		mailService.sendMail(new NotificationEmail("Please Activate your account", user.getEmail(),
-				"Thank you for SigningUp to SpringReddit. Please click on the below url to activate your account : http://localhost:8080/api/auth/accountVerification/"
-						+ verficationToken));
+				"Thank you for SigningUp to SpringReddit. Please click on the below url to activate your account :"
+						+ appConfig.getUrl() + "/api/auth/accountVerification/" + verficationToken));
 	}
 
 	private String generateVerificationToken(User user) {
