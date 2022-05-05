@@ -3,8 +3,7 @@ pipeline {
     stages {
         stage('Build ') {
             steps {
-               sh "pwd"
-               sh "mvn clean package -X"
+               sh "mvn clean package -P build-reddit-clone"
             }
         }
         stage('Starting up containerized databases') {
