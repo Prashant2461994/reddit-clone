@@ -1608,6 +1608,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! rxjs/operators */
     "./node_modules/rxjs/_esm2015/operators/index.js");
+    /* harmony import */
+
+
+    var _environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../../../environments/environment */
+    "./src/environments/environment.ts");
 
     var AuthService = /*#__PURE__*/function () {
       function AuthService(httpClient, localStorage) {
@@ -1626,7 +1632,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AuthService, [{
         key: "signup",
         value: function signup(signupRequestPayload) {
-          return this.httpClient.post('http://localhost:8080/api/auth/signup', signupRequestPayload, {
+          return this.httpClient.post(_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].serverUrl + '/api/auth/signup', signupRequestPayload, {
             responseType: 'text'
           });
         }
@@ -1635,7 +1641,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function login(loginRequestPayload) {
           var _this3 = this;
 
-          return this.httpClient.post('http://localhost:8080/api/auth/login', loginRequestPayload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (data) {
+          return this.httpClient.post(_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].serverUrl + '/api/auth/login', loginRequestPayload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (data) {
             _this3.localStorage.store('authenticationToken', data.authenticationToken);
 
             _this3.localStorage.store('username', data.username);
@@ -1661,7 +1667,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function refreshToken() {
           var _this4 = this;
 
-          return this.httpClient.post('http://localhost:8080/api/auth/refresh/token', this.refreshTokenPayload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["tap"])(function (response) {
+          return this.httpClient.post(_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].serverUrl + '/api/auth/refresh/token', this.refreshTokenPayload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["tap"])(function (response) {
             _this4.localStorage.clear('authenticationToken');
 
             _this4.localStorage.clear('expiresAt');
@@ -1674,7 +1680,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "logout",
         value: function logout() {
-          this.httpClient.post('http://localhost:8080/api/auth/logout', this.refreshTokenPayload, {
+          this.httpClient.post(_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].serverUrl + '/api/auth/logout', this.refreshTokenPayload, {
             responseType: 'text'
           }).subscribe(function (data) {
             console.log(data);
@@ -2025,6 +2031,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+    /* harmony import */
+
+
+    var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/environments/environment */
+    "./src/environments/environment.ts");
 
     var CommentService = /*#__PURE__*/function () {
       function CommentService(httpClient) {
@@ -2036,17 +2048,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CommentService, [{
         key: "getAllCommentsForPost",
         value: function getAllCommentsForPost(postId) {
-          return this.httpClient.get('http://localhost:8080/api/comments/by-post/' + postId);
+          return this.httpClient.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/comments/by-post/' + postId);
         }
       }, {
         key: "postComment",
         value: function postComment(commentPayload) {
-          return this.httpClient.post('http://localhost:8080/api/comments/', commentPayload);
+          return this.httpClient.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/comments/', commentPayload);
         }
       }, {
         key: "getAllCommentsByUser",
         value: function getAllCommentsByUser(name) {
-          return this.httpClient.get('http://localhost:8080/api/comments/by-user/' + name);
+          return this.httpClient.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/comments/by-user/' + name);
         }
       }]);
 
@@ -2766,6 +2778,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+    /* harmony import */
+
+
+    var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/environments/environment */
+    "./src/environments/environment.ts");
 
     var PostService = /*#__PURE__*/function () {
       function PostService(http) {
@@ -2777,22 +2795,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(PostService, [{
         key: "getAllPosts",
         value: function getAllPosts() {
-          return this.http.get('http://localhost:8080/api/posts/');
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/posts/');
         }
       }, {
         key: "createPost",
         value: function createPost(postPayload) {
-          return this.http.post('http://localhost:8080/api/posts/', postPayload);
+          return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/posts/', postPayload);
         }
       }, {
         key: "getPost",
         value: function getPost(id) {
-          return this.http.get('http://localhost:8080/api/posts/' + id);
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/posts/' + id);
         }
       }, {
         key: "getAllPostsByUser",
         value: function getAllPostsByUser(name) {
-          return this.http.get('http://localhost:8080/api/posts/by-user/' + name);
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/posts/by-user/' + name);
         }
       }]);
 
@@ -3274,6 +3292,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+    /* harmony import */
+
+
+    var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/environments/environment */
+    "./src/environments/environment.ts");
 
     var VoteService = /*#__PURE__*/function () {
       function VoteService(http) {
@@ -3285,7 +3309,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(VoteService, [{
         key: "vote",
         value: function vote(votePayload) {
-          return this.http.post('http://localhost:8080/api/votes/', votePayload);
+          return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/votes/', votePayload);
         }
       }]);
 
@@ -3586,6 +3610,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+    /* harmony import */
+
+
+    var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/environments/environment */
+    "./src/environments/environment.ts");
 
     var SubredditService = /*#__PURE__*/function () {
       function SubredditService(http) {
@@ -3597,12 +3627,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(SubredditService, [{
         key: "getAllSubreddits",
         value: function getAllSubreddits() {
-          return this.http.get('http://localhost:8080/api/subreddit');
+          return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/subreddit');
         }
       }, {
         key: "createSubreddit",
         value: function createSubreddit(subredditModel) {
-          return this.http.post('http://localhost:8080/api/subreddit', subredditModel);
+          return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/subreddit', subredditModel);
         }
       }]);
 
@@ -3787,7 +3817,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var environment = {
       production: false,
-      serverUrl: "http://localhost:4200/"
+      serverUrl: "http://localhost:8080/"
     };
     /*
      * For easier debugging in development mode, you can import the following file

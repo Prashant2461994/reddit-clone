@@ -822,6 +822,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var ngx_webstorage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-webstorage */ "./node_modules/ngx-webstorage/__ivy_ngcc__/fesm2015/ngx-webstorage.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -840,10 +842,10 @@ let AuthService = class AuthService {
         };
     }
     signup(signupRequestPayload) {
-        return this.httpClient.post('http://localhost:8080/api/auth/signup', signupRequestPayload, { responseType: 'text' });
+        return this.httpClient.post(_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].serverUrl + '/api/auth/signup', signupRequestPayload, { responseType: 'text' });
     }
     login(loginRequestPayload) {
-        return this.httpClient.post('http://localhost:8080/api/auth/login', loginRequestPayload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(data => {
+        return this.httpClient.post(_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].serverUrl + '/api/auth/login', loginRequestPayload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(data => {
             this.localStorage.store('authenticationToken', data.authenticationToken);
             this.localStorage.store('username', data.username);
             this.localStorage.store('refreshToken', data.refreshToken);
@@ -857,7 +859,7 @@ let AuthService = class AuthService {
         return this.localStorage.retrieve('authenticationToken');
     }
     refreshToken() {
-        return this.httpClient.post('http://localhost:8080/api/auth/refresh/token', this.refreshTokenPayload)
+        return this.httpClient.post(_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].serverUrl + '/api/auth/refresh/token', this.refreshTokenPayload)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["tap"])(response => {
             this.localStorage.clear('authenticationToken');
             this.localStorage.clear('expiresAt');
@@ -866,7 +868,7 @@ let AuthService = class AuthService {
         }));
     }
     logout() {
-        this.httpClient.post('http://localhost:8080/api/auth/logout', this.refreshTokenPayload, { responseType: 'text' })
+        this.httpClient.post(_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].serverUrl + '/api/auth/logout', this.refreshTokenPayload, { responseType: 'text' })
             .subscribe(data => {
             console.log(data);
         }, error => {
@@ -1071,6 +1073,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -1079,13 +1083,13 @@ let CommentService = class CommentService {
         this.httpClient = httpClient;
     }
     getAllCommentsForPost(postId) {
-        return this.httpClient.get('http://localhost:8080/api/comments/by-post/' + postId);
+        return this.httpClient.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/comments/by-post/' + postId);
     }
     postComment(commentPayload) {
-        return this.httpClient.post('http://localhost:8080/api/comments/', commentPayload);
+        return this.httpClient.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/comments/', commentPayload);
     }
     getAllCommentsByUser(name) {
-        return this.httpClient.get('http://localhost:8080/api/comments/by-user/' + name);
+        return this.httpClient.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/comments/by-user/' + name);
     }
 };
 CommentService.ctorParameters = () => [
@@ -1492,6 +1496,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -1500,16 +1506,16 @@ let PostService = class PostService {
         this.http = http;
     }
     getAllPosts() {
-        return this.http.get('http://localhost:8080/api/posts/');
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/posts/');
     }
     createPost(postPayload) {
-        return this.http.post('http://localhost:8080/api/posts/', postPayload);
+        return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/posts/', postPayload);
     }
     getPost(id) {
-        return this.http.get('http://localhost:8080/api/posts/' + id);
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/posts/' + id);
     }
     getAllPostsByUser(name) {
-        return this.http.get('http://localhost:8080/api/posts/by-user/' + name);
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/posts/by-user/' + name);
     }
 };
 PostService.ctorParameters = () => [
@@ -1780,6 +1786,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -1788,7 +1796,7 @@ let VoteService = class VoteService {
         this.http = http;
     }
     vote(votePayload) {
-        return this.http.post('http://localhost:8080/api/votes/', votePayload);
+        return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/votes/', votePayload);
     }
 };
 VoteService.ctorParameters = () => [
@@ -1958,6 +1966,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -1966,10 +1976,10 @@ let SubredditService = class SubredditService {
         this.http = http;
     }
     getAllSubreddits() {
-        return this.http.get('http://localhost:8080/api/subreddit');
+        return this.http.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/subreddit');
     }
     createSubreddit(subredditModel) {
-        return this.http.post('http://localhost:8080/api/subreddit', subredditModel);
+        return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].serverUrl + '/api/subreddit', subredditModel);
     }
 };
 SubredditService.ctorParameters = () => [
@@ -2082,7 +2092,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = {
     production: false,
-    serverUrl: "http://localhost:4200/"
+    serverUrl: "http://localhost:8080/"
 };
 /*
  * For easier debugging in development mode, you can import the following file
