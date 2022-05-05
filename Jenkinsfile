@@ -5,8 +5,7 @@ pipeline {
         stage('Build ') {
             steps {
                sh "pwd"
-   
-    sh "pwd"
+               sh "mvn clean package"
             }
         }
         stage('Test') {
