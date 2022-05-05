@@ -1,21 +1,22 @@
 pipeline {
     agent { label 'myapps' }
-
     stages {
-        
         stage('Build ') {
             steps {
                sh "pwd"
                sh "mvn clean package -X"
             }
         }
-        
-        stage('Test') {
+        stage('Starting up containerized databases') {
             steps {
-                echo 'Testing..'
+                sh 'sudo docker-compose up -d'
             }
         }
-        
+        stage('Starting up containerized databases') {
+            steps {
+                sh 'sudo docker-compose up -d'
+            }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
