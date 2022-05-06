@@ -23,15 +23,4 @@ public class SubredditDTO {
 	private String name;
 	private String description;
 	private Integer numberOfPosts;
-	
-	
-	public static void main(String[] args) throws JsonProcessingException {
-		ObjectMapper mapper = new ObjectMapper();
-		SubredditDTO dto = new SubredditDTO();
-		dto.setDescription("This is test description");
-		dto.setName("test-name");
-		dto.setNumberOfPosts(2);
-		log.info(mapper.writeValueAsString(dto));
-		
-	}
 }

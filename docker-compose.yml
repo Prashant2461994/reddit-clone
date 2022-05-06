@@ -35,6 +35,18 @@ services:
     restart: unless-stopped
     networks:
     - mysql
+  reddit-backend:
+    image: rprashant24062994
+    container_name: reddit-backend
+    ports:
+    - 8080:8080
+    networks:
+    - spring
+    - mysql
+    environment:
+    - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+    - db
 networks:
   mysql:
     driver: bridge
