@@ -11,10 +11,6 @@ pipeline {
                 sh 'sudo docker compose up -d'
             }
         }
-        stage('Copying reddit-frontend to apache document root') {
-            steps {
-           // sh 'sudo docker build -t reddit-backend:latest ./redit-backend/Dockerfile'
-            }
-        }
+       
     }
 }
