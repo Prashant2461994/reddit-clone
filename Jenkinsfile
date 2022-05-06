@@ -11,9 +11,9 @@ pipeline {
                 sh 'sudo docker compose up -d'
             }
         }
-        stage('Deploy') {
+        stage('Starting Reddit-Backend With Prod Profile') {
             steps {
-                echo 'Deploying....'
+            sh 'java -jar -Dspring.profiles.active=prod ./redit-backend/target/redit-backend-0.0.1-SNAPSHOT.jar'
             }
         }
     }
