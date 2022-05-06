@@ -132,10 +132,14 @@
 					<plugin>
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-maven-plugin</artifactId>
-						<version>${maven.compiler.source}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>repackage</goal>
+								</goals>
+							</execution>
+						</executions>
 						<configuration>
-							<source>${maven.compiler.source}</source>
-							<target>${maven.compiler.target}</target>
 							<forceJavacCompilerUse>true</forceJavacCompilerUse>
 							<excludes>
 								<exclude>
@@ -143,6 +147,7 @@
 									<artifactId>lombok</artifactId>
 								</exclude>
 							</excludes>
+							<mainClass>com.redditbackend.app.RedditBackend</mainClass>
 						</configuration>
 					</plugin>
 					<plugin>
