@@ -36,7 +36,7 @@ services:
     networks:
     - mysql
   reddit-backend:
-    image: rprashant24062994
+    image: prashant24062994/redit-backend
     container_name: reddit-backend
     ports:
     - 8080:8080
