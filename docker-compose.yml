@@ -1,41 +1,19 @@
 version: '3.3'
 services:
-  db:
-    image: mysql:5.7
+  postgres:
     container_name: db
-    restart: always
+    image: postgres
     environment:
-      MYSQL_DATABASE: db
-      MYSQL_ROOT_HOST: '%'
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
-    ports:
-    - 3306:3306
-    expose:
-    - '3306'
+      POSTGRES_USER: pkt
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
     volumes:
-    - dbmysql:/var/lib/mysql
-    - confmysql:/etc/mysql
+    - postgres:/data/postgres
+    ports:
+    - 5432:5432
     networks:
-    - spring
-    - mysql
-  mysql-workbench:
-    image: lscr.io/linuxserver/mysql-workbench
-    container_name: mysql-workbench
-    environment:
-    - PUID=1000
-    - PGID=1000
-    - TZ=Europe/London
-    volumes:
-    - /etc/mysql-config:/config
-    ports:
-    - 3000:3000
-    cap_add:
-    - IPC_LOCK
+    - postgres
     restart: unless-stopped
-    networks:
-    - mysql
-    - spring
   reddit-backend:
     image: prashant24062994/redit-backend
     container_name: reddit-backend
@@ -43,20 +21,20 @@ services:
     - 8080:8080
     networks:
     - spring
-    - mysql
+    - postgres
     environment:
     - SPRING_PROFILES_ACTIVE=prod
-    - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/reddit_store?autoReconnect=true&useSSL=false
+    - SPRING_DATASOURCE_URL=jdbc:mysql://db:5432/reddit_store?autoReconnect=true&useSSL=false
     - SPRING_DATASOURCE_USERNAME=pkt
     - SPRING_DATASOURCE_PASSWORD=password
     - SPRING_JPA_HIBERNATE_DDL-AUTO=update
     depends_on:
     - db
 networks:
-  mysql:
+  postgres:
     driver: bridge
   spring:
     driver: bridge
 volumes:
-  dbmysql: null
+  postgres: null
   confmysql: null
