@@ -21,7 +21,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Entity
 @Builder
-@Table(name="reddit-users")
+@Table(name="reddit_users")
 public class User {
     @Id
     @GeneratedValue(strategy = IDENTITY)
