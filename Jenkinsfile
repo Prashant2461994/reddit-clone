@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Build ') {
       steps {
-        sh "mvn clean package -P build-reddit-clone"
+        sh "mvn clean install -P build-reddit-clone"
       }
     }
     
