@@ -14,8 +14,8 @@ services:
     expose:
     - '3306'
     volumes:
-    - mysqldb:/var/lib/mysql
-    - mysqlconf:/etc/mysql
+    - dbmysql:/var/lib/mysql
+    - confmysql:/etc/mysql
     networks:
     - spring
     - mysql
@@ -58,5 +58,5 @@ networks:
   spring:
     driver: bridge
 volumes:
-  mysqldb: null
-  mysqlconf: null
+  dbmysql: null
+  confmysql: null
