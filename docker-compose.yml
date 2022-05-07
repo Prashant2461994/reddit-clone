@@ -23,7 +23,7 @@ services:
     - spring
     - postgres
     environment:
-    - SPRING_PROFILES_ACTIVE=prod
+    - SPRING_PROFILES_ACTIVE=postgres
     - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/reddit_store
     - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
     - SPRING_DATASOURCE_USERNAME=pkt
