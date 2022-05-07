@@ -35,6 +35,7 @@ services:
     restart: unless-stopped
     networks:
     - mysql
+    - spring
   reddit-backend:
     image: prashant24062994/redit-backend
     container_name: reddit-backend
