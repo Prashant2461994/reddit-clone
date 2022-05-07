@@ -12,20 +12,22 @@ pipeline {
     stage('Starting up containerized databases') {
       steps {
         sh '''
-        if [!"$(sudo docker ps -q -f name=reddit-backend)"];
-        then
-         if ["$(sudo docker ps -aq -f status=up -f name=reddit-backend)"];
-            then
-            #STOP THE CONTAINER
-            sudo docker stop reddit-backend
-         fi
-            if ["$(sudo docker ps -aq -f status=exited -f name=reddit-backend)"];
-            then
-            #REMOVE THE CONTAINER
-            sudo docker rm reddit-backend
-            fi
-        fi
-       sudo docker compose up - d
+     	 #!/bin/sh
+		container_name="reddit-backend";
+		readonly container_name;
+		result=$( sudo docker ps -a |  awk 'NR > 1 {print $NF}' | grep $container_name);
+		echo "$result is container search result";
+   		if [[ -n "$result" ]]; then
+  		#STOP THE RUNNING CONTAINER
+  		sudo docker stop $container_name;
+  		#REMOVE THE RUNNING CONTAINER
+  		sudo docker rm $container_name;
+  		#STARTING THE DOCKER COMPOSE
+  		sudo docker-compose up -d;
+		else
+			echo "$container_name container does not exists. Creating new containers";
+			sudo docker-compose up -d;
+		fi
         '''
       }
     }
