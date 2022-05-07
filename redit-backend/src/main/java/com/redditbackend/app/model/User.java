@@ -21,7 +21,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Entity
 @Builder
-public class User {
+@Table(name="users_info")
+public class User{
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long userId;
