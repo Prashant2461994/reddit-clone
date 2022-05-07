@@ -9,8 +9,8 @@ if [[ -n "$result" ]]; then
   #REMOVE THE RUNNING CONTAINER
   sudo docker rm $container_name;
   #STARTING THE DOCKER COMPOSE
-  sudo docker-compose up -d;
+  sudo docker compose up -d;
 else
 echo "$container_name container does not exists. Creating new containers";
-sudo docker-compose up -d;
+sudo docker compose up -d;
 fi
