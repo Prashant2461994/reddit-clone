@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-06T21:55:42+0530",
-    comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.15 (Private Build)"
+    date = "2022-05-07T20:38:24+0530",
+    comments = "version: 1.3.1.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 17.0.2 (Eclipse Adoptium)"
 )
 @Component
 public class SubredditMapperImpl implements SubredditMapper {
@@ -23,9 +23,9 @@ public class SubredditMapperImpl implements SubredditMapper {
 
         SubredditDTOBuilder subredditDTO = SubredditDTO.builder();
 
+        subredditDTO.description( subreddit.getDescription() );
         subredditDTO.id( subreddit.getId() );
         subredditDTO.name( subreddit.getName() );
-        subredditDTO.description( subreddit.getDescription() );
 
         subredditDTO.numberOfPosts( mapPosts(subreddit.getPosts()) );
 
@@ -40,9 +40,9 @@ public class SubredditMapperImpl implements SubredditMapper {
 
         SubredditBuilder subreddit = Subreddit.builder();
 
+        subreddit.description( subredditDto.getDescription() );
         subreddit.id( subredditDto.getId() );
         subreddit.name( subredditDto.getName() );
-        subreddit.description( subredditDto.getDescription() );
 
         return subreddit.build();
     }
