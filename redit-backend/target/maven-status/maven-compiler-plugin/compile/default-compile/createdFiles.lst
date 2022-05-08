@@ -2,6 +2,7 @@ com/redditbackend/app/service/UserDetailsServiceImpl.class
 com/redditbackend/app/controller/AuthController.class
 com/redditbackend/app/repository/VerificationTokenRepository.class
 com/redditbackend/app/model/Comment.class
+com/redditbackend/app/listener/AppContextEventListener.class
 com/redditbackend/app/dto/PostRequest.class
 com/redditbackend/app/mapper/SubredditMapperImpl.class
 com/redditbackend/app/dto/SubredditDTO$SubredditDTOBuilder.class

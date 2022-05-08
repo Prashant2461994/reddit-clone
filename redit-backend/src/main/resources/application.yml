@@ -1,5 +1,9 @@
 app:
   url: http://localhost:8080
+
+server:
+  port: 8080
+
 jwt:
   expiration:
     time: 90000
@@ -14,9 +18,12 @@ logging:
         type:
           descriptor:
             sql: trace
-server:
-  port: 8080
+
+
 spring:
+  profiles:
+    active:
+    - postgres
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: password
