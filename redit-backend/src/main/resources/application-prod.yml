@@ -1,0 +1,36 @@
+app:
+  url: http://reddit-backend:8080
+jwt:
+  expiration:
+    time: 90000
+  private:
+    key: classpath:app.key
+  public:
+    key: classpath:app.pub
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+server:
+  port: 8080
+spring:
+  datasource:
+    password: password
+    username: pkt
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  mail:
+    host: smtp.mailtrap.io
+    password: 647c175b3a708c
+    port: 465
+    protocol: smtp
+    username: 3c97aa1b398e13

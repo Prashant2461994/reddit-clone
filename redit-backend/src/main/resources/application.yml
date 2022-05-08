@@ -1,0 +1,39 @@
+app:
+  url: http://localhost:8080
+jwt:
+  expiration:
+    time: 90000
+  private:
+    key: classpath:app.key
+  public:
+    key: classpath:app.pub
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: password
+    url: jdbc:mysql://localhost:3306/reddit?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+    username: pkt
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+    show-sql: true
+  mail:
+    host: smtp.mailtrap.io
+    password: 647c175b3a708c
+    port: 465
+    protocol: smtp
+    username: 3c97aa1b398e13
