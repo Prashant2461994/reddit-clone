@@ -23,7 +23,7 @@ logging:
 spring:
   profiles:
     active:
-    - postgres
+    - mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: password

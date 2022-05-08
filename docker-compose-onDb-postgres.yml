@@ -1,0 +1,36 @@
+version: '3.3'
+services:
+  db:
+    container_name: db
+    image: postgres
+    environment:
+      POSTGRES_USER: pkt
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+    - postgres:/data/postgres
+    ports:
+    - 5432:5432
+    networks:
+    - postgres
+    restart: unless-stopped
+  reddit-backend:
+    image: prashant24062994/redit-backend
+    container_name: reddit-backend
+    ports:
+    - 8080:8080
+    networks:
+    - spring
+    - postgres
+    environment:
+    - SPRING_PROFILES_ACTIVE=postgres
+    depends_on:
+    - db
+networks:
+  postgres:
+    driver: bridge
+  spring:
+    driver: bridge
+volumes:
+  postgres: null
+  confmysql: null
