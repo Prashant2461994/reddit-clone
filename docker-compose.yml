@@ -33,6 +33,7 @@ services:
     - db
     environment:
     - SPRING_PROFILES_ACTIVE=mysql
+    - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/reddit?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
     depends_on:
     - db
 networks:
