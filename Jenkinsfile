@@ -30,6 +30,7 @@ pipeline {
         sh "sudo cp -r ${REDDIT_NG_SOURCE_LOC} ${REDDIT_NG_DESTINATION_LOC}"
         sh "sudo chmod 777 -R ${REDDIT_NG_DESTINATION_LOC}*"
         sh "sudo mv ${HTACCESS_FILE_LOC}  ${REDDIT_NG_DESTINATION_LOC}"
+        sh "sudo chmod 777 -R ${REDDIT_NG_DESTINATION_LOC}*"
       }
     }
 
