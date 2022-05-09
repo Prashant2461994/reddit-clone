@@ -23,8 +23,7 @@ pipeline {
 
     stage('Setting up reddit front') {
       steps {
-        sh "sudo rm -r ${REDDIT_NG_DESTINATION}*"
-        sh "sudo mkdir -p ${REDDIT_NG_DESTINATION}"
+        sh "sudo rm ${REDDIT_NG_DESTINATION}*"
         sh "sudo chmod 777 -R ${REDDIT_NG_DESTINATION}*"
         sh "sudo cp -r ${REDDIT_NG_SOURCE} ${REDDIT_NG_DESTINATION}"
         sh "sudo chmod 777 -R ${REDDIT_NG_DESTINATION}*"
