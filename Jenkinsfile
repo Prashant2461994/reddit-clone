@@ -4,7 +4,7 @@ pipeline {
   }
 
   environment {
-    REDDIT_NG_SOURCE = "redit-frontend/main/angular-reddit-clone/dist/angular-reddit-clone"
+    REDDIT_NG_SOURCE = "./redit-frontend/src/main/angular-reddit-clone/dist/angular-reddit-clone/"
     REDDIT_NG_DESTINATION = "/var/www/reddit/"
   }
   stages {
