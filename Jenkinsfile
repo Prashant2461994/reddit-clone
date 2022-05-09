@@ -4,7 +4,7 @@ pipeline {
   }
 
   environment {
-    REDDIT_NG_SOURCE = "./redit-frontend/src/main/angular-reddit-clone/dist/angular-reddit-clone/"
+    REDDIT_NG_SOURCE = "./redit-frontend/src/main/angular-reddit-clone/dist/angular-reddit-clone/*"
     REDDIT_NG_DESTINATION = "/var/www/reddit/"
   }
   stages {
@@ -23,6 +23,7 @@ pipeline {
 
     stage('Setting up reddit front') {
       steps {
+        sh "sudo rm -rf ${REDDIT_NG_DESTINATION}"
         sh "sudo cp -r ${REDDIT_NG_SOURCE} ${REDDIT_NG_DESTINATION}"
       }
     }
