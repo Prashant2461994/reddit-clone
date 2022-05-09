@@ -25,6 +25,7 @@ pipeline {
       steps {
         sh "sudo rm -rv ${REDDIT_NG_DESTINATION}*"
         sh "sudo cp -r ${REDDIT_NG_SOURCE} ${REDDIT_NG_DESTINATION}"
+        sh "sudo chmod 777 -R ${REDDIT_NG_DESTINATION}*"
       }
     }
 
