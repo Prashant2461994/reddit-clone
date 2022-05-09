@@ -26,8 +26,6 @@ pipeline {
 
     stage('Setting up reddit front') {
       steps {
-        sh "sudo rm -rf ${REDDIT_NG_DESTINATION}*"
-        sh "sudo chmod 777 -R ${REDDIT_NG_DESTINATION}*"
         sh "sudo cp -r ${REDDIT_NG_SOURCE} ${REDDIT_NG_DESTINATION}"
         sh "sudo chmod 777 -R ${REDDIT_NG_DESTINATION}*"
         sh "sudo mv apache.htaccess /var/www/inventoryui1app/.htaccess"
