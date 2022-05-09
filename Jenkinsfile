@@ -2,11 +2,11 @@
 pipeline {
   agent {
     label 'myapps'
-    environment {
-        REDDIT_NG_SOURCE = "redit-frontend/main/angular-reddit-clone/dist/angular-reddit-clone"
-        REDDIT_NG_DESTINATION= "/var/www/reddit/"
     }
   }
+   environment {
+        REDDIT_NG_SOURCE = "redit-frontend/main/angular-reddit-clone/dist/angular-reddit-clone"
+        REDDIT_NG_DESTINATION= "/var/www/reddit/"
   stages {
     stage('Build ') {
       steps {
